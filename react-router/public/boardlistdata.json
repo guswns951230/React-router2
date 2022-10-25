@@ -1,0 +1,7 @@
+{
+  "boardlist": [
+    { "id": 1, "context": "first" },
+    { "id": 2, "context": "second" },
+    { "id": 3, "context": "third" }
+  ]
+}

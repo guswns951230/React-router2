@@ -1,6 +1,6 @@
 import "./App.css";
 import Layout from "./page/Layout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./page/Home";
 import Writeform from "./page/Writeform";
@@ -9,20 +9,20 @@ import BoardContext from "./page/BoardContext";
 import { SetContext, StateContext } from "./context/ContextComp";
 
 function App() {
-  const [boardlist, setBoard] = useState([
-    {
-      id: 1,
-      context: "first",
-    },
-    {
-      id: 2,
-      context: "second",
-    },
-    {
-      id: 3,
-      context: "third",
-    },
-  ]);
+  const [boardlist, setBoard] = useState([]);
+  // 실행 시 바로 ajax를 통해 값을 들고 올 수 있다
+  useEffect(() => {
+    // Fetch를 사용한 ajax
+    async function getData() {
+      // response로 값을 받아오는 시간이 걸림
+      // -> 데이터가 없는 동안 어떻게 표현할지 작성필요
+      const response = await fetch("boardlistdata.json");
+      const data = await response.json();
+      console.log(data);
+      setBoard(data.boardlist); // 데이터 관리
+    }
+    getData();
+  }, []);
 
   return (
     <div className="App">
