@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Layout from "./page/Layout";
+import { Routes, Route } from "react-router-dom";
+import Home from "./page/Home";
+import Writeform from "./page/Writeform";
+import BoardList from "./page/BoardList";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          {/* path='/' 대신 index를 사용할 수 있다 */}
+          <Route index element={<Home />} />
+          <Route path="writeform" element={<Writeform />} />
+          <Route path="boardlist" element={<BoardList />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
